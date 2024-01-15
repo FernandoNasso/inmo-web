@@ -1,6 +1,7 @@
-import { Module } from '@nestjs/common';
+import { MiddlewareConsumer, Module, RequestMethod } from '@nestjs/common';
 import { PropertiesModule } from './properties/properties.module';
 import { MongooseModule } from '@nestjs/mongoose';
+import * as cors from 'cors';
 
 @Module({
   imports: [
@@ -12,4 +13,8 @@ import { MongooseModule } from '@nestjs/mongoose';
   controllers: [],
   providers: [],
 })
-export class AppModule {}
+export class AppModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer.apply(cors()).forRoutes({ path: '*', method: RequestMethod.ALL });
+  }
+}
