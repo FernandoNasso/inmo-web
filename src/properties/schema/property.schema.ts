@@ -19,10 +19,10 @@ export class Property extends Document {
   status: string; // Estado de la publicación (vigente, reservado, vendido, etc.)
 
   @Prop({ required: true })
-  price: number;
+  price: string;
 
   @Prop()
-  expenses: number;
+  expenses: string;
 
   @Prop()
   acceptsPermutation: boolean;
@@ -105,7 +105,7 @@ export class Property extends Document {
   @Prop()
   otherRooms: string[];
 
-  @Prop()
+  @Prop({ type: { video: [String], photos: [String] } })
   multimedia: {
     video: string[];
     photos: string[];
